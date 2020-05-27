@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>imagePublisher</name>
+  <name>image_node</name>
   <version>0.0.0</version>
   <description>The imagePublisher package</description>
 

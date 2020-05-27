@@ -24,14 +24,14 @@ using namespace std;
 
 int main(int argc, char **argv)
 {
-
     ros::init(argc, argv, "image_publisher");
     ros::NodeHandle nh;
     image_transport::ImageTransport it(nh);//发布图片需要用到image_transport
     image_transport::Publisher pub = it.advertise("/dji_data/image_raw", 100);
 
     //TODO read imgs
-    std::string source = "/media/lab/DiskDocuments/Data/DJI47/960X540";
+    std::string source = "/media/lab/DiskDocuments/Data/DJI47/960X540"; //DJI data
+//    std::string source = "/home/lab/Dataset/kinect/modu_768x432"; //kinect color
     std::vector<std::string> files;
     if (getdir(source, files) >= 0) {
         printf("found %d image files in folder %s!\n", (int) files.size(), source.c_str());
@@ -41,7 +41,7 @@ int main(int argc, char **argv)
         printf("could not load file list! wrong path / file?\n");
     }
 
-    ros::Rate loop_rate(15);
+    ros::Rate loop_rate(5);
     int img_cnt = 0;
     float period = 1.0f / 30.0f;
     while (nh.ok())

@@ -1,12 +1,8 @@
+SET(PROJECT_NAME image_node)
 cmake_minimum_required(VERSION 2.8.3)
-project(imagePublisher)
+project(${PROJECT_NAME})
+SET(CMAKE_BUILD_TYPE Release) # Release, RelWithDebInfo
 
-## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
-
-## Find catkin macros and libraries
-## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
-## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   cv_bridge
   image_transport
@@ -42,8 +38,15 @@ include_directories(
 )
 
 
-add_executable(imagePublisher src/main_ros.cpp)
-target_link_libraries(imagePublisher
+add_executable(publisher src/main_pub.cpp)
+target_link_libraries(publisher
         ${LIBS}
 #        ${catkin_LIBRARIES}
+        )
+
+
+add_executable(subscriber src/main_sub.cpp)
+target_link_libraries(subscriber
+        ${LIBS}
+        #        ${catkin_LIBRARIES}
         )
